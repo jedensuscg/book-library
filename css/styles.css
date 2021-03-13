@@ -1,0 +1,17 @@
+#book-display {
+    display: grid;
+}
+.box {
+    padding: 5px 5px 20px 5px;
+    width: 250px;
+    height: 400px;
+    text-align: center;
+    background: #ddd;
+    margin: 20px;
+    display: inline-block;
+    vertical-align: top;
+}
+
+.book-cover {
+    height: 200px;
+}

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/styles.css">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <button @click="toggleShowBooks">
+            <span v-if="showBooks">Hide Books</span> <!-- v-if removes from DOM-->
+            <span v-else>Show Books</span>
+        </button>
+
+        <button @click="toggleGrid">
+            <span v-if="showGrid">List View</span> <!-- v-if removes from DOM-->
+            <span v-else>Grid View</span>
+        </button>
+
+        <div id="book-display" v-if="showBooks">
+            <div id="grid-view" v-if="showGrid">
+                <div v-for="book in books" class="box">
+                    <p ></p>
+                    <h3>{{book.title}}</h3>
+                    <p> {{book.author}} </p>
+                    <p> Pages: {{book.pages}} </p>
+                    <p> Read Book? <span v-if="book.isRead == true">Yes</span> <span v-else="book.isRead == true">No</span></p>
+                    <img class="book-cover" :src="book.cover" alt="">
+                </div>
+            </div>
+            
+            <ul  id="list-view" v-if="!showGrid">
+                <li v-for="book in books">
+                    <h3>{{book.title}}</h3>
+                    <p> {{book.author}} </p>
+                    <p> Pages: {{book.pages}} </p>
+                    <p> Read Book? <span v-if="book.isRead == true">Yes</span> <span v-else="book.isRead == true">No</span>
+                    </p>
+                </li>
+            </ul>
+        </div>
+
+        <div id="book-entry">
+            <label for="title">TITLE</label>
+            <input type="text" name="title" id="title" v-model="addBookTitle">
+            <br>
+            <label for="author">AUTHOR</label>
+            <input type="text" name="author" id="author" v-model='addNewAuthor'>
+            <br>
+            <label for="is-read">READ BOOK?</label>
+            <input type="checkbox" name="" id="is-read" v-model="isRead">
+            <br>
+            <br>
+            <button type="submit" id="submit" @click="addBook(addBookTitle, addNewAuthor, isRead)">ADD BOOK</button>
+        </div>
+    </div>
+
+    <br>
+    <br>
+
+    <script src="https://unpkg.com/vue@next"></script>
+    <script src="js/app.js"></script>
+</body>
+
+</html>
